@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SignaDrop – PDF Visual Signature Placer | Draw & Drag Signature onto PDF</title>
+    <meta name="description" content="Draw your signature, drag & drop it onto any PDF, and download the signed document instantly. 100% private, no upload to server.">
+    <meta name="keywords" content="PDF signature, draw signature, sign PDF online, digital signature, drag signature, sign PDF free, visual signature placer">
+    <meta name="author" content="SignaDrop">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://signadrop.com/">
+
+    <!-- Favicon (optional but recommended) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Theme colour for browsers -->
+    <meta name="theme-color" content="#5f4bb6">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="SignaDrop – PDF Visual Signature Placer">
+    <meta property="og:description" content="Draw your signature, drag it onto any PDF, and download the signed file. No server, no registration.">
+    <meta property="og:url" content="https://signadrop.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://signadrop.com/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SignaDrop – PDF Visual Signature Placer">
+    <meta name="twitter:description" content="Draw, drag & drop signature onto PDF. Free & private.">
+    <meta name="twitter:image" content="https://signadrop.com/twitter-image.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SignaDrop",
+        "operatingSystem": "Any",
+        "applicationCategory": "Multimedia",
+        "description": "A free, client‑side tool to draw a signature, drag it onto a PDF, and download the signed PDF.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <!-- Sidebar Ad (desktop) -->
+    <aside class="ad-sidebar" aria-label="Advertisement">
+        <span>Advertisement<br>300×600</span>
+    </aside>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <a href="/" class="logo-group" aria-label="SignaDrop Home">
+                <span class="logo-icon">✍️</span>
+                <span class="logo">SignaDrop</span>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch dark/light mode">🌙</button>
+        </header>
+
+        <!-- Top Banner Ad -->
+        <div class="ad-banner" aria-label="Advertisement">
+            <span>Advertisement – Top Banner (728×90)</span>
+        </div>
+
+        <!-- Upload Section -->
+        <section class="card" aria-label="PDF upload">
+            <h2>📄 Upload your PDF</h2>
+            <div id="upload-area">
+                <span style="font-size:2rem;">📤</span>
+                <p>Tap or drag & drop a PDF file here</p>
+                <small style="opacity:0.7;">Max 10 MB</small>
+            </div>
+            <input type="file" id="file-input" accept="application/pdf">
+        </section>
+
+        <!-- PDF Viewer & Signature Placement -->
+        <section id="pdf-section" class="card" style="display:none;" aria-label="PDF preview and signature placement">
+            <h2>✒️ Drag your signature onto the document</h2>
+            <div class="pdf-viewer-wrapper" id="pdf-viewer-container">
+                <canvas id="pdf-canvas"></canvas>
+                <img id="signature-overlay" style="display:none;" alt="Your signature">
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:1rem;">
+                <button class="btn" id="prev-page" disabled>← Prev</button>
+                <span id="page-info"></span>
+                <button class="btn" id="next-page" disabled>Next →</button>
+            </div>
+            <div style="margin-top:1rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <button class="btn btn-danger" id="remove-pdf" disabled>🗑 Remove PDF</button>
+                <button class="btn" id="apply-signature-btn" disabled>✅ Apply Signature & Download</button>
+                <small id="placement-hint" style="opacity:0.7; display:none;">Drag the signature image to the correct line</small>
+            </div>
+        </section>
+
+        <!-- Signature Pad -->
+        <section class="card signature-section" aria-label="Draw your signature">
+            <h2>🖊️ Draw your signature</h2>
+            <canvas id="signature-canvas" width="600" height="150"></canvas>
+            <div class="sig-buttons">
+                <button class="btn btn-secondary" id="clear-sig">Clear</button>
+                <button class="btn" id="place-signature-btn" disabled>Place on PDF</button>
+            </div>
+        </section>
+
+        <!-- Native Ad Placeholder -->
+        <div class="ad-native" aria-label="Advertisement">
+            <span>Advertisement – Native Ad (between tools)</span>
+        </div>
+
+        <footer>
+            <p>© 2026 SignaDrop – <a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
+        </footer>
+    </div>
+
+    <!-- Footer Banner Ad -->
+    <div class="ad-banner" style="max-width:900px; margin: 1rem auto;" aria-label="Advertisement">
+        <span>Advertisement – Footer Banner</span>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

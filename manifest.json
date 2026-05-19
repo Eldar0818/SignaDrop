@@ -1,0 +1,21 @@
+{
+  "name": "SignaDrop – PDF Visual Signature Placer",
+  "short_name": "SignaDrop",
+  "description": "Draw your signature, drag & drop it onto any PDF, and download the signed file instantly. 100% private.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f9fc",
+  "theme_color": "#5f4bb6",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

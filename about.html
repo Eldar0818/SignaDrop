@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SignaDrop – The Visual PDF Signature Tool</title>
+    <meta name="description" content="Learn how SignaDrop lets you draw, drag, and sign PDFs instantly in your browser, with complete privacy.">
+    <link rel="canonical" href="https://signadrop.com/about">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+        <!-- Favicon (optional but recommended) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Theme colour for browsers -->
+    <meta name="theme-color" content="#5f4bb6">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <a href="/" class="logo-group"><span class="logo-icon">✍️</span><span class="logo">SignaDrop</span></a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch dark/light mode">🌙</button>
+        </header>
+
+        <section class="card">
+            <h1>About SignaDrop</h1>
+            <p>SignaDrop was born from a simple need: <strong>sign documents without printing, scanning, or uploading sensitive files to a server.</strong></p>
+            <p>We believe your documents are yours alone. That's why SignaDrop processes everything directly inside your browser. No data is ever sent to our servers – because there are no servers. Your PDF, your signature, your privacy.</p>
+
+            <h2>How It Works</h2>
+            <ul>
+                <li>📤 Upload a PDF (max 10 MB)</li>
+                <li>🖊️ Draw your signature with your finger, stylus, or mouse on the built‑in pad</li>
+                <li>🖱️ Drag the signature image to the exact line in your document</li>
+                <li>⬇️ Download the signed PDF – ready to share</li>
+            </ul>
+
+            <h2>Our Technology</h2>
+            <p>SignaDrop uses open‑source libraries <a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener">pdf.js</a> and <a href="https://pdf-lib.js.org/" target="_blank" rel="noopener">pdf‑lib</a> to render and modify PDFs securely on the client side. The entire tool is a static website, meaning it loads fast, works offline, and respects your bandwidth.</p>
+
+            <h2>Why "SignaDrop"?</h2>
+            <p>The name combines <em>signature</em> and <em>drop</em> – because that's exactly what you do: you drop your signature onto the page. Simple, intuitive, and a little playful.</p>
+        </section>
+
+        <footer>
+            <p>© 2026 SignaDrop – <a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
+        </footer>
+    </div>
+    <script>
+        // Minimal theme toggle (same logic)
+        const toggle = document.getElementById('theme-toggle');
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            toggle.textContent = '☀️';
+        }
+        toggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                toggle.textContent = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggle.textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+</html>

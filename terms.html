@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service – SignaDrop</title>
+    <meta name="description" content="Terms of service for using the SignaDrop PDF signature tool.">
+    <link rel="canonical" href="https://signadrop.com/terms">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+        <!-- Favicon (optional but recommended) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Theme colour for browsers -->
+    <meta name="theme-color" content="#5f4bb6">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <a href="/" class="logo-group"><span class="logo-icon">✍️</span><span class="logo">SignaDrop</span></a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html" class="active">Terms</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch dark/light mode">🌙</button>
+        </header>
+
+        <section class="card">
+            <h1>Terms of Service</h1>
+            <p><strong>Last updated:</strong> 2026-05-17</p>
+
+            <h2>1. Acceptance</h2>
+            <p>By using SignaDrop ("the Service"), you agree to these terms. If you disagree, please do not use the tool.</p>
+
+            <h2>2. Service Description</h2>
+            <p>SignaDrop provides a browser‑based utility to add a visual signature to PDF documents. The Service is provided "as is" without warranty of any kind.</p>
+
+            <h2>3. User Responsibilities</h2>
+            <p>You are responsible for the documents you upload and sign. SignaDrop is not liable for the content of your files or the legality of the signatures you place. The tool is meant for personal and business use, but you must ensure compliance with local electronic signature laws.</p>
+
+            <h2>4. Intellectual Property</h2>
+            <p>The SignaDrop name, logo, and website design are proprietary. You may not copy or redistribute the core tool without permission.</p>
+
+            <h2>5. Limitation of Liability</h2>
+            <p>SignaDrop shall not be liable for any indirect, incidental, or consequential damages resulting from the use or inability to use the Service.</p>
+
+            <h2>6. Changes</h2>
+            <p>We reserve the right to modify these terms at any time. Continued use of the website constitutes acceptance of the updated terms.</p>
+        </section>
+
+        <footer>
+            <p>© 2026 SignaDrop – <a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
+        </footer>
+    </div>
+    <script>
+        const toggle = document.getElementById('theme-toggle');
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            toggle.textContent = '☀️';
+        }
+        toggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                toggle.textContent = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggle.textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+</html>
